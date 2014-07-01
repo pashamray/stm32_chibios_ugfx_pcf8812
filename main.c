@@ -34,20 +34,22 @@ int main(void) {
   halInit();
   chSysInit();
 
-  font_t font1;
-
   /* Initialize and clear the display */
   gfxInit();
 
+  //font_t font1;
+
   /* Draw draw draw */
   // Get the fonts we want to use
-  font1 = gdispOpenFont("Archangelsk Regular 12");
+  //font1 = gdispOpenFont("Archangelsk Regular 12");
 
   // Demonstrate our other fonts
-  gdispDrawString(10, 10, "привет мир", font1, Black);
+  //gdispDrawString(10, 10, "Hello world !!!", font1, White);
+
+  //gdispGDrawLine(GDISP, 0, 0, 50, 50, Black );
 
   // Wait forever
-  while(TRUE) {
-      gfxSleepMilliseconds(500);
-  }
+      while(TRUE) {
+          gfxSleepMilliseconds(500);
+      }
 }
