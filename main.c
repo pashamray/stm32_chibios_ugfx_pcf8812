@@ -47,9 +47,10 @@ int main(void) {
   //gdispDrawString(10, 10, "Hello world !!!", font1, White);
 
   //gdispGDrawLine(GDISP, 0, 0, 50, 50, Black );
-
+  gdispGClear(GDISP, Black);
+  
   // Wait forever
-      while(TRUE) {
-          gfxSleepMilliseconds(500);
-      }
+  while(TRUE) {
+    gfxSleepMilliseconds(500);
+  }
 }

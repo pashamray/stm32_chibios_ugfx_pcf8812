@@ -58,7 +58,7 @@ endif
 PROJECT = stm32_chibios_ugfx_pcf8812
 
 # Imported source files and paths
-CHIBIOS = /home/ps/projects/chibios
+CHIBIOS = /opt/chibios
 GFXLIB  = $(CHIBIOS)/ext/ugfx
 
 include board/board.mk
