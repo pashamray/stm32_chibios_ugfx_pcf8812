@@ -54,12 +54,12 @@
 //#define GDISP_NEED_QUERY                             FALSE
 //#define GDISP_NEED_MULTITHREAD                       FALSE
 //#define GDISP_NEED_STREAMING                         FALSE
-//#define GDISP_NEED_TEXT                              FALSE
+#define GDISP_NEED_TEXT                              TRUE
 //    #define GDISP_NEED_ANTIALIAS                     FALSE
 //    #define GDISP_NEED_UTF8                          FALSE
 //    #define GDISP_NEED_TEXT_KERNING                  FALSE
 //    #define GDISP_INCLUDE_FONT_UI1                   FALSE
-//    #define GDISP_INCLUDE_FONT_UI2                   FALSE		// The smallest preferred font.
+    #define GDISP_INCLUDE_FONT_UI2                   TRUE		// The smallest preferred font.
 //    #define GDISP_INCLUDE_FONT_LARGENUMBERS          FALSE
 //    #define GDISP_INCLUDE_FONT_DEJAVUSANS10          FALSE
 //    #define GDISP_INCLUDE_FONT_DEJAVUSANS12          FALSE
@@ -75,7 +75,7 @@
 //    #define GDISP_INCLUDE_FONT_DEJAVUSANS24_AA       FALSE
 //    #define GDISP_INCLUDE_FONT_DEJAVUSANS32_AA       FALSE
 //    #define GDISP_INCLUDE_FONT_DEJAVUSANSBOLD12_AA   FALSE
-//    #define GDISP_INCLUDE_USER_FONTS                 FALSE
+    #define GDISP_INCLUDE_USER_FONTS                 TRUE
 
 //#define GDISP_NEED_IMAGE                             FALSE
 //    #define GDISP_NEED_IMAGE_NATIVE                  FALSE
@@ -93,7 +93,7 @@
 //    #define GDISP_NEED_IMAGE_PNG                     FALSE
 //    #define GDISP_NEED_IMAGE_ACCOUNTING              FALSE
 
-#define GDISP_NEED_STARTUP_LOGO                      FALSE
+#define GDISP_NEED_STARTUP_LOGO                      TRUE
 
 //#define GDISP_DEFAULT_ORIENTATION                    GDISP_ROTATE_LANDSCAPE    // If not defined the native hardware orientation is used.
 //#define GDISP_LINEBUF_SIZE                           128

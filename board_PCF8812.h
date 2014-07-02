@@ -39,6 +39,14 @@ static const SPIConfig hs_spicfg = {
 	0
 };
 
+/* Low speed SPI configuration (281.250kHz, CPHA=0, CPOL=0, MSb first).*/
+static SPIConfig ls_spicfg = {
+	NULL,
+	PCF8812_SPI_PORT,
+	PCF8812_SPI_NSS,
+	SPI_CR1_BR_2 | SPI_CR1_BR_1
+};
+
 #if GFX_USE_OS_CHIBIOS
 	static int32_t thdPriority = 0;
 #endif

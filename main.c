@@ -37,17 +37,16 @@ int main(void) {
   /* Initialize and clear the display */
   gfxInit();
 
-  //font_t font1;
+  font_t font1;
 
   /* Draw draw draw */
   // Get the fonts we want to use
-  //font1 = gdispOpenFont("Archangelsk Regular 12");
+  font1 = gdispOpenFont("Archangelsk Regular 12");
 
   // Demonstrate our other fonts
-  //gdispDrawString(10, 10, "Hello world !!!", font1, White);
-
-  //gdispGDrawLine(GDISP, 0, 0, 50, 50, Black );
-  gdispGClear(GDISP, Black);
+  gdispDrawString(10, 10, "Hello world !!!", font1, White);
+  gdispFlush();
+  //gdispDrawLine(0, 0, 50, 50, Black );
   
   // Wait forever
   while(TRUE) {

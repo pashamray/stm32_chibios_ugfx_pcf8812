@@ -11,6 +11,28 @@
 	},
 	"buffers":
 	[
+		{
+			"contents": "##############################################################################\n# Build global options\n# NOTE: Can be overridden externally.\n#\n\n# Compiler options here.\nifeq ($(USE_OPT),)\n  USE_OPT = -O2 -ggdb -fomit-frame-pointer -falign-functions=16\nendif\n\n# C specific options here (added to USE_OPT).\nifeq ($(USE_COPT),)\n  USE_COPT = \nendif\n\n# C++ specific options here (added to USE_OPT).\nifeq ($(USE_CPPOPT),)\n  USE_CPPOPT = -fno-rtti\nendif\n\n# Enable this if you want the linker to remove unused code and data\nifeq ($(USE_LINK_GC),)\n  USE_LINK_GC = yes\nendif\n\n# If enabled, this option allows to compile the application in THUMB mode.\nifeq ($(USE_THUMB),)\n  USE_THUMB = yes\nendif\n\n# Enable this if you want to see the full log while compiling.\nifeq ($(USE_VERBOSE_COMPILE),)\n  USE_VERBOSE_COMPILE = no\nendif\n\n#\n# Build global options\n##############################################################################\n\n##############################################################################\n# Architecture or project specific options\n#\n\n# Enable this if you really want to use the STM FWLib.\nifeq ($(USE_FWLIB),)\n  USE_FWLIB = no\nendif\n\n#\n# Architecture or project specific options\n##############################################################################\n\n##############################################################################\n# Project, sources and paths\n#\n\n# Define project name here\nPROJECT = stm32_chibios_ugfx_pcf8812\n\n# Imported source files and paths\nCHIBIOS = /opt/chibios\nGFXLIB  = $(CHIBIOS)/ext/ugfx\n\ninclude board/board.mk\ninclude $(CHIBIOS)/os/hal/platforms/STM32F1xx/platform.mk\ninclude $(CHIBIOS)/os/hal/hal.mk\ninclude $(CHIBIOS)/os/ports/GCC/ARMCMx/STM32F1xx/port.mk\ninclude $(CHIBIOS)/os/kernel/kernel.mk\ninclude $(GFXLIB)/gfx.mk\ninclude $(GFXLIB)/drivers/gdisp/PCF8812/gdisp_lld.mk \n\n# Define linker script file here\nLDSCRIPT= $(PORTLD)/STM32F103xB.ld\n\n# C sources that can be compiled in ARM or THUMB mode depending on the global\n# setting.\nCSRC = $(PORTSRC) \\\n       $(KERNSRC) \\\n       $(HALSRC) \\\n       $(PLATFORMSRC) \\\n       $(BOARDSRC) \\\n       $(CHIBIOS)/os/various/evtimer.c \\\n       $(CHIBIOS)/os/various/syscalls.c \\\n       $(GFXSRC) \\\n       main.c\n\n# C++ sources that can be compiled in ARM or THUMB mode depending on the global\n# setting.\nCPPSRC =\n\n# C sources to be compiled in ARM mode regardless of the global setting.\n# NOTE: Mixing ARM and THUMB mode enables the -mthumb-interwork compiler\n#       option that results in lower performance and larger code size.\nACSRC =\n\n# C++ sources to be compiled in ARM mode regardless of the global setting.\n# NOTE: Mixing ARM and THUMB mode enables the -mthumb-interwork compiler\n#       option that results in lower performance and larger code size.\nACPPSRC =\n\n# C sources to be compiled in THUMB mode regardless of the global setting.\n# NOTE: Mixing ARM and THUMB mode enables the -mthumb-interwork compiler\n#       option that results in lower performance and larger code size.\nTCSRC =\n\n# C sources to be compiled in THUMB mode regardless of the global setting.\n# NOTE: Mixing ARM and THUMB mode enables the -mthumb-interwork compiler\n#       option that results in lower performance and larger code size.\nTCPPSRC =\n\n# List ASM source files here\nASMSRC = $(PORTASM)\n\nINCDIR = $(PORTINC) $(KERNINC) \\\n         $(HALINC) $(PLATFORMINC) $(BOARDINC) \\\n         $(GFXINC) \\\n         $(CHIBIOS)/os/various\n\n#\n# Project, sources and paths\n##############################################################################\n\n##############################################################################\n# Compiler settings\n#\n\nMCU  = cortex-m3\n\n#TRGT = arm-elf-\nTRGT = arm-none-eabi-\nCC   = $(TRGT)gcc\nCPPC = $(TRGT)g++\n# Enable loading with g++ only if you need C++ runtime support.\n# NOTE: You can use C++ even without C++ support if you are careful. C++\n#       runtime support makes code size explode.\nLD   = $(TRGT)gcc\n#LD   = $(TRGT)g++\nCP   = $(TRGT)objcopy\nAS   = $(TRGT)gcc -x assembler-with-cpp\nOD   = $(TRGT)objdump\nHEX  = $(CP) -O ihex\nBIN  = $(CP) -O binary\n\n# ARM-specific options here\nAOPT =\n\n# THUMB-specific options here\nTOPT = -mthumb -DTHUMB\n\n# Define C warning options here\nCWARN = -Wall -Wextra -Wstrict-prototypes\n\n# Define C++ warning options here\nCPPWARN = -Wall -Wextra\n\n#\n# Compiler settings\n##############################################################################\n\n##############################################################################\n# Start of default section\n#\n\n# List all default C defines here, like -D_DEBUG=1\nDDEFS =\n\n# List all default ASM defines here, like -D_DEBUG=1\nDADEFS =\n\n# List all default directories to look for include files here\nDINCDIR =\n\n# List the default directory to look for the libraries here\nDLIBDIR =\n\n# List all default libraries here\nDLIBS =\n\n#\n# End of default section\n##############################################################################\n\n##############################################################################\n# Start of user section\n#\n\n# List all user C define here, like -D_DEBUG=1\nUDEFS =\n\n# Define ASM defines here\nUADEFS =\n\n# List all user directories here\nUINCDIR =\n\n# List the user directory to look for the libraries here\nULIBDIR =\n\n# List all user libraries here\nULIBS =\n\n#\n# End of user defines\n##############################################################################\n\nifeq ($(USE_FWLIB),yes)\n  include $(CHIBIOS)/ext/stm32lib/stm32lib.mk\n  CSRC += $(STM32SRC)\n  INCDIR += $(STM32INC)\n  USE_OPT += -DUSE_STDPERIPH_DRIVER\nendif\n\ninclude $(CHIBIOS)/os/ports/GCC/ARMCMx/rules.mk\n",
+			"file": "Makefile",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 5572,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "/*\n    ChibiOS/RT - Copyright (C) 2006-2013 Giovanni Di Sirio\n\n    Licensed under the Apache License, Version 2.0 (the \"License\");\n    you may not use this file except in compliance with the License.\n    You may obtain a copy of the License at\n\n        http://www.apache.org/licenses/LICENSE-2.0\n\n    Unless required by applicable law or agreed to in writing, software\n    distributed under the License is distributed on an \"AS IS\" BASIS,\n    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n    See the License for the specific language governing permissions and\n    limitations under the License.\n*/\n\n#include \"ch.h\"\n#include \"hal.h\"\n\n#include \"gfx.h\"\n\n/*\n * Application entry point.\n */\nint main(void) {\n\n  /*\n   * System initializations.\n   * - HAL initialization, this also initializes the configured device drivers\n   *   and performs the board-specific initializations.\n   * - Kernel initialization, the main() function becomes a thread and the\n   *   RTOS is active.\n   */\n  halInit();\n  chSysInit();\n\n  /* Initialize and clear the display */\n  gfxInit();\n\n  //font_t font1;\n\n  /* Draw draw draw */\n  // Get the fonts we want to use\n  //font1 = gdispOpenFont(\"Archangelsk Regular 12\");\n\n  // Demonstrate our other fonts\n  //gdispDrawString(10, 10, \"Hello world !!!\", font1, White);\n\n  //gdispGDrawLine(GDISP, 0, 0, 50, 50, Black );\n  \n  // Wait forever\n  while(TRUE) {\n    gfxSleepMilliseconds(500);\n  }\n}\n",
+			"file": "main.c",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 1438,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/User/ARM-GCC.sublime-build",
 	"command_palette":
@@ -56,13 +78,15 @@
 	},
 	"file_history":
 	[
+		"/opt/chibios/ext/ugfx/drivers/gdisp/PCF8812/gdisp_lld_PCF8812.c",
+		"/opt/chibios/ext/ugfx/drivers/gdisp/PCF8812/PCF8812.h",
+		"/home/ps/project/stm32/stm32_chibios_ugfx_pcf8812/board_framebuffer.h",
 		"/home/ps/project/stm32/stm32_chibios_ugfx_pcf8812/Makefile",
 		"/home/ps/project/stm32/stm32_chibios_ugfx_pcf8812/main.c",
 		"/home/ps/project/stm32/stm32_chibios_ugfx_pcf8812/gfxconf.h",
 		"/home/ps/project/stm32/stm32_chibios_ugfx_pcf8812/chconf.h",
 		"/home/ps/project/stm32/stm32_chibios_ugfx_pcf8812/.dep/can_lld.o.d",
 		"/home/ps/project/stm32/stm32_chibios_ugfx_pcf8812/.dep/console.o.d",
-		"/opt/chibios/ext/ugfx/drivers/gdisp/PCF8812/gdisp_lld_PCF8812.c",
 		"/home/ps/.config/sublime-text-3/Packages/User/SublimeGDB.sublime-settings",
 		"/home/ps/.config/sublime-text-3/Packages/SublimeGDB/SublimeGDB.sublime-settings",
 		"/home/ps/.config/sublime-text-3/Packages/User/ARM-GCC.sublime-build"
@@ -83,6 +107,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"hs_spicfg",
 			"dmp"
 		],
 		"highlight": true,
@@ -101,8 +126,67 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "Makefile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5572,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2020,
+								2020
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 765.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "main.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1438,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								681,
+								681
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 306.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -139,7 +223,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 228.0
+		"height": 152.0
 	},
 	"output.find_results":
 	{
