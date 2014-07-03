@@ -16,15 +16,15 @@
 
 // For a multiple display configuration we would put all this in a structure and then
 //	set g->board to that structure.
-#define PCF8812_SPI_PORT   GPIOA
-#define PCF8812_SPI_NSS    4
-#define PCF8812_SPI_SCK    5
-#define PCF8812_SPI_MISO   6
-#define PCF8812_SPI_MOSI   7
+#define PCF8812_SPI_PORT	GPIOA
+#define PCF8812_SPI_NSS		4
+#define PCF8812_SPI_SCK		5
+#define PCF8812_SPI_MISO	6
+#define PCF8812_SPI_MOSI	7
 
-#define PCF8812_PIN_PORT   GPIOA
+#define PCF8812_PIN_PORT	GPIOA
 #define PCF8812_PIN_RST		3
-#define PCF8812_PIN_DC     2
+#define PCF8812_PIN_DC		2
 
 #define SET_RST				palSetPad(PCF8812_PIN_PORT, PCF8812_PIN_RST);
 #define CLR_RST				palClearPad(PCF8812_PIN_PORT, PCF8812_PIN_RST);
@@ -39,20 +39,11 @@ static const SPIConfig hs_spicfg = {
 	0
 };
 
-/* Low speed SPI configuration (281.250kHz, CPHA=0, CPOL=0, MSb first).*/
-static SPIConfig ls_spicfg = {
-	NULL,
-	PCF8812_SPI_PORT,
-	PCF8812_SPI_NSS,
-	SPI_CR1_BR_2 | SPI_CR1_BR_1
-};
-
 #if GFX_USE_OS_CHIBIOS
 	static int32_t thdPriority = 0;
 #endif
 
-static inline void init_board(GDisplay *g)
-{
+static inline void init_board(GDisplay *g) {
 	// As we are not using multiple displays we set g->board to NULL as we don't use it.
 	g->board = 0;
 
@@ -114,7 +105,7 @@ static inline void write_cmd(GDisplay *g, uint8_t cmd) {
 	spiStop(&SPID1);
 }
 
-static inline void write_data(GDisplay *g, uint8_t* data, uint16_t length) {
+static inline void write_data(GDisplay *g, uint8_t data, uint16_t length) {
 	(void) g;
 
 	palSetPad(PCF8812_PIN_PORT, PCF8812_PIN_DC);
@@ -128,6 +119,11 @@ static inline void write_data(GDisplay *g, uint8_t* data, uint16_t length) {
 
 static inline void post_init_board(GDisplay *g) {
     (void) g;
+}
+
+static inline void set_backlight(GDisplay *g, uint8_t percent) {
+	(void) g;
+	(void) percent;
 }
 
 #endif /* _GDISP_LLD_BOARD_H */

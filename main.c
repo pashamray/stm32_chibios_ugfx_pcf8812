@@ -43,11 +43,14 @@ int main(void) {
   // Get the fonts we want to use
   font1 = gdispOpenFont("Archangelsk Regular 12");
 
-  // Demonstrate our other fonts
-  gdispDrawString(10, 10, "Hello world !!!", font1, White);
-  gdispFlush();
-  //gdispDrawLine(0, 0, 50, 50, Black );
-  
+  gdispFillStringBox(0, 0,  102, 12, "Hello world !!!", font1, White, Black, justifyCenter);
+  gdispFillStringBox(0, 13, 102, 12, "Привет мир !!!",  font1, Black, White, justifyCenter);
+  gdispFillStringBox(0, 26, 102, 12, "PCF8812",         font1, White, Black, justifyCenter);
+  gdispFillStringBox(0, 38, 102, 12, "driver",          font1, Black, White, justifyCenter);
+  gdispFillStringBox(0, 51, 102, 12, "uGFX library",    font1, White, Black, justifyCenter);
+
+  //gdispFlush();
+
   // Wait forever
   while(TRUE) {
     gfxSleepMilliseconds(500);
