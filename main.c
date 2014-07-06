@@ -147,6 +147,7 @@ int main(void) {
   /* Initialize and clear the display */
   gfxInit();
 
+  gdispSetOrientation(GDISP_ROTATE_0);
   gdispDrawLine(0, 0, 95, 64, White);
   //benchmark();
 
