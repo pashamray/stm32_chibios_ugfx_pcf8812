@@ -42,8 +42,8 @@
 
 #define GDISP_NEED_AUTOFLUSH                         TRUE
 //#define GDISP_NEED_TIMERFLUSH                        FALSE
-#define GDISP_NEED_VALIDATION                        TRUE
-#define GDISP_NEED_CLIP                              TRUE
+#define GDISP_NEED_VALIDATION                        FALSE
+#define GDISP_NEED_CLIP                              FALSE
 //#define GDISP_NEED_CIRCLE                            FALSE
 //#define GDISP_NEED_ELLIPSE                           FALSE
 //#define GDISP_NEED_ARC                               FALSE
@@ -56,10 +56,10 @@
 //#define GDISP_NEED_STREAMING                         FALSE
 #define GDISP_NEED_TEXT                              TRUE
 //    #define GDISP_NEED_ANTIALIAS                     FALSE
-//    #define GDISP_NEED_UTF8                          FALSE
+    #define GDISP_NEED_UTF8                          TRUE
 //    #define GDISP_NEED_TEXT_KERNING                  FALSE
 //    #define GDISP_INCLUDE_FONT_UI1                   FALSE
-//    #define GDISP_INCLUDE_FONT_UI2                   FALSE		// The smallest preferred font.
+//    #define GDISP_INCLUDE_FONT_UI2                   TRUE		// The smallest preferred font.
 //    #define GDISP_INCLUDE_FONT_LARGENUMBERS          FALSE
 //    #define GDISP_INCLUDE_FONT_DEJAVUSANS10          FALSE
 //    #define GDISP_INCLUDE_FONT_DEJAVUSANS12          FALSE
@@ -93,7 +93,7 @@
 //    #define GDISP_NEED_IMAGE_PNG                     FALSE
 //    #define GDISP_NEED_IMAGE_ACCOUNTING              FALSE
 
-#define GDISP_NEED_STARTUP_LOGO                      TRUE
+#define GDISP_NEED_STARTUP_LOGO                      FALSE
 
 //#define GDISP_DEFAULT_ORIENTATION                    GDISP_ROTATE_LANDSCAPE    // If not defined the native hardware orientation is used.
 //#define GDISP_LINEBUF_SIZE                           128

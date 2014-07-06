@@ -13,7 +13,6 @@
 #ifndef _GDISP_LLD_BOARD_H
 #define _GDISP_LLD_BOARD_H
 
-
 // For a multiple display configuration we would put all this in a structure and then
 //	set g->board to that structure.
 #define PCF8812_SPI_PORT	GPIOA
@@ -43,6 +42,15 @@ static const SPIConfig hs_spicfg = {
 	static int32_t thdPriority = 0;
 #endif
 
+static inline void setpin_reset(GDisplay *g, bool_t state) {
+	(void) g;
+	if(state) {
+		CLR_RST;
+	} else {
+		SET_RST;
+	}
+}
+
 static inline void init_board(GDisplay *g) {
 	// As we are not using multiple displays we set g->board to NULL as we don't use it.
 	g->board = 0;
@@ -53,7 +61,7 @@ static inline void init_board(GDisplay *g) {
          * SPI1 I/O pins setup.
          */
 	    palSetPadMode(PCF8812_PIN_PORT, PCF8812_PIN_RST,  PAL_MODE_OUTPUT_PUSHPULL);            /* RESET */
-	    CLR_RST;
+	    setpin_reset(g, TRUE);
 	    palSetPadMode(PCF8812_PIN_PORT, PCF8812_PIN_DC,   PAL_MODE_OUTPUT_PUSHPULL);            /*  D/C  */
 
         palSetPadMode(PCF8812_SPI_PORT, PCF8812_SPI_SCK,  PAL_MODE_STM32_ALTERNATE_PUSHPULL);   /* SCK. */
@@ -64,15 +72,6 @@ static inline void init_board(GDisplay *g) {
 
 		spiInit();
 		break;
-	}
-}
-
-static inline void setpin_reset(GDisplay *g, bool_t state) {
-	(void) g;
-	if(state) {
-		CLR_RST;
-	} else {
-		SET_RST;
 	}
 }
 
@@ -93,14 +92,14 @@ static inline void release_bus(GDisplay *g) {
 	spiReleaseBus(&SPID1);
 }
 
-static inline void write_cmd(GDisplay *g, uint8_t cmd) {
+static inline void write_index(GDisplay *g, uint8_t index) {
 	(void)	g;
 
 	palClearPad(PCF8812_PIN_PORT, PCF8812_PIN_DC);
 
 	spiStart(&SPID1, &hs_spicfg);
 	spiSelect(&SPID1);
-	spiStartSend(&SPID1, 1, &cmd);
+	spiStartSend(&SPID1, 1, &index);
 	spiUnselect(&SPID1);
 	spiStop(&SPID1);
 }
