@@ -92,7 +92,7 @@ static inline void release_bus(GDisplay *g) {
 	spiReleaseBus(&SPID1);
 }
 
-static inline void write_index(GDisplay *g, uint8_t index) {
+static inline void write_cmd(GDisplay *g, uint8_t index) {
 	(void)	g;
 
 	palClearPad(PCF8812_PIN_PORT, PCF8812_PIN_DC);
